@@ -29,13 +29,28 @@
     -->
 
     <!--STYLES-->
+    <link rel="stylesheet" href="/styles/bootstrap.css">
+    <link rel="stylesheet" href="/styles/importer.css">
     <!--STYLES END-->
   </head>
 
   <body>
+   <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/"> activityOverlord</a>
+      </div>
+    </div>
+ 
+
     <%- body %>
 
-
+    <div class="container">
+      <hr>
+      <footer class="footer pull-right">
+          <a href="http://sailsjs.com">sails.js</a>
+          <div>tutorial by morgothbcn, with a bunch of help from irl nathan</div>
+      </footer>
+    </div>
 
     <!--
         Client-side Templates
@@ -59,6 +74,7 @@
     -->
 
     <!--TEMPLATES-->
+    
     <!--TEMPLATES END-->
 
 
@@ -86,6 +102,11 @@
     -->
 
     <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/jquery-2.1.1.min.js"></script>
+    <script src="/js/dependencies/jquery.validate.min.js"></script>
+    <script src="/js/dependencies/bootstrap.min.js"></script>
+    <script src="/js/customValidate.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>
