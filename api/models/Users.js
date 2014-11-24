@@ -46,11 +46,13 @@ module.exports = {
 		},
 
 		porlado:{
-			type: 'boolean'
+			type: 'boolean',
+			defaultsTo: false
 		},
 
 		junta:{
-			type: 'boolean'
+			type: 'boolean',
+			defaultsTo: false
 		},
 
 
@@ -64,9 +66,31 @@ module.exports = {
 
 			return obj;
 		}
+	},
 
+	beforeValidation: function (values, next){
+		console.log(values);
+		if(typeof values.junta !== 'undefined'){
+			if(values.junta ==='uncheked'){
+				values.junta = false;	
+			}else if(values.junta[1]==='on'){
+				values.junta = true;
+			}
+		} 
+		next();
+	},
 
+	beforeCreate: function(values, next){
+		//Chequear que realmente el pass y la confirm son iguales antes de continuar
+		if(!values.password || values.password != values.confirmation)
+			return next({err: ["Password doesn't match password confirmation"]});
 
+		require('bcrypt').hash(values.password,10, function passwordEncrypted(err, encryptedPassword){
+			if(err) return next(err);
+			values.encryptedPassword = encryptedPassword;
+			//values.online = true;
+			next();
+		});
 	}
 };
 

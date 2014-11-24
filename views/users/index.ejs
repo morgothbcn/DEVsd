@@ -8,6 +8,7 @@
 				<th>Name</th>
 				<th>LastName</th>
 				<th>Email</th>
+				<th>Junta</th>
 				<th></th>
 				<th></th>
 				<th></th>
@@ -20,6 +21,11 @@
 				<td><%= user.name %></td>
 				<td><%= user.lastName %></td>
 				<td><%= user.email %></td>
+				<% if(user.junta) { %>
+					<td><img src="/images/ok3.png" width="32" heigth="32"></td>
+				<% }else{ %>
+					<td><img src="/images/cancel3.png" width="32" heigth="32"></td>
+				<% } %>
 				<td><a href="/users/show/<%= user.id %>" class="btn btn-sm btn-primary">Show</a></td>
 				<td><a href="/users/edit/<%= user.id %>" class="btn btn-sm btn-warning">Edit</a></td>
 				<td>

@@ -1,5 +1,10 @@
 <div class='container'>
 	<h1><%= user.name + ' '+ user.lastName %></h1>
+	<% if(user.junta) { %>
+		<td><img src="/images/ok3.png" width="32" heigth="32"></td>
+	<% }else{ %>
+		<td><img src="/images/cancel3.png" width="32" heigth="32"></td>
+	<% } %>
 	<h3><%= user.birthDate %></h3>
 	<hr>
 	<h3>contact: <%= user.email %></h3>

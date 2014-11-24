@@ -4,6 +4,16 @@
 	<input value="<%= user.name %>" name="name" type="text" class="form-control"/>
 	<input value="<%= user.lastName %>" name="lastName" type="text" class="form-control"/>
 	<input value="<%= user.email %>" name="email" type="text" class="form-control"/>
+
+	<% if(session.authenticated && session.User.junta) { %>
+		<% if(user.junta) {%>
+			<input type="hidden" name="junta" value="unchecked">
+			<label class="checkbox"><input type="checkbox" name="junta" checked>Admin</label>
+		<% }else { %>
+			<input type="hidden" name="junta" value="unchecked">
+			<label class="checkbox"><input type="checkbox" name="junta" >Admin</label>
+		<% } %>
+	<% } %>
 	
 	<input type="submit" value="Proceed" class="btn btn-lg btn-primary btn-block"/>
 	<input type="hidden" name="_csrf" value="<%= _csrf %>" />

@@ -25,6 +25,9 @@ module.exports = {
 				return res.redirect('/users/new');
 			} 
 
+			//Log user in
+			req.session.authenticated = true;
+			req.session.User = user;
 			//After successfully creating the user redirect to the show action
 			//res.json(user);
 			res.redirect('/users/show/'+user.id);
