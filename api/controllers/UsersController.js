@@ -74,6 +74,17 @@ module.exports = {
 
 			res.redirect('/users/show/'+req.param('id'));
 		});
+	},
+
+	destroy: function (req, res, next){
+		Users.findOne(req.param('id'), function foundUser(err,user){
+			if(err) return next(err);
+			if(!user) return next('User dosn\'t exist.');
+
+			Users.destroy(req.param('id'), function userDestroy(err){
+				if(err) return next(err);
+			});
+		});
 	}
 };
 
