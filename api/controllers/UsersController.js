@@ -71,10 +71,51 @@ module.exports = {
 
 	//proces the info from edit view
 	update: function(req, res, next){
-		Users.update(req.param('id'), req.params.all(), function userUpdate(err){
+		var junta = false;
+		if(req.session.User.junta){
+			//console.log(req.param('junta'));
+			if(req.param('junta') === 'seleccionado'){
+				junta = true;	
+			}else{
+				junta = false;
+			}
+
+			if(req.param('porlado') === 'seleccionado'){
+				porlado = true;	
+			}else{
+				porlado = false;
+			}
+		 
+			var userObj = {
+				name: req.param('name'),
+				lastName: req.param('lastName'),
+				email: req.param('email'),
+				junta: junta,
+				porlado:porlado,
+				dni: req.param('dni'),
+				birthDate: req.param('birthDate'),
+				altaDate: req.param('altaDate'),
+				bajaDate: req.param('bajaDate'),
+				phone: req.param('phone')
+			}
+		}else{
+			var userObj = {
+				name: req.param('name'),
+				lastName: req.param('lastName'),
+				email: req.param('email'),
+				dni: req.param('dni'),
+				birthDate: req.param('birthDate'),
+				phone: req.param('phone')
+			}
+		}
+
+		console.log("update datos");
+		console.log(userObj);
+		console.log("update final");
+
+		Users.update(req.param('id'), userObj, function userUpdate(err){
 			if(err)
 				return res.redirect('/users/edit/'+req.param('id'));
-
 			res.redirect('/users/show/'+req.param('id'));
 		});
 	},

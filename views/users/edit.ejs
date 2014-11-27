@@ -1,17 +1,39 @@
 <form action="/users/update/<%= user.id %>" method="POST" class="form-signin"> 
 	<h2> Hey, you are editing a user... </h2>
 
+	<label for="name">Nombre</label>
 	<input value="<%= user.name %>" name="name" type="text" class="form-control"/>
+	<label for="lastName">Apellidos</label>
 	<input value="<%= user.lastName %>" name="lastName" type="text" class="form-control"/>
+	<label for="email">Email</label>
 	<input value="<%= user.email %>" name="email" type="text" class="form-control"/>
+	<label for="dni">Dni</label>
+	<input value="<%= user.dni %>" name="dni" type="text" class="form-control"/>
+	
+	<label for="phone">Teléfono</label>
+	<input value="<%= user.phone %>" name="phone" type="number" class="form-control"/>
 
+	<label for="bithDate">Fecha de Nacimiento</label>
+	<input value="<%= user.bithDate %>" name="bithDate" type="date" class="form-control"/>
 	<% if(session.authenticated && session.User.junta) { %>
-		<% if(user.junta) {%>
-			<input type="hidden" name="junta" value="unchecked">
-			<label class="checkbox"><input type="checkbox" name="junta" checked>Admin</label>
-		<% }else { %>
-			<input type="hidden" name="junta" value="unchecked">
-			<label class="checkbox"><input type="checkbox" name="junta" >Admin</label>
+		<label for="altaDate">Fecha de Alta</label>
+		<input value="<%= user.altaDate %>" name="altaDate" type="date" class="form-control"/>
+		<label for="bajaDate">Fecha de Baja</label>
+		<input value="<%= user.bajaDate %>" name="bajaDate" type="date" class="form-control"/>
+	<% } %>
+	<% if(session.authenticated && session.User.junta) { %>
+		<% if(user.porlado) { %>
+			<label class="checkbox"><input id="porlado" type="checkbox" name="porlado" checked value="seleccionado" /> Porlado</label>
+		<% } else { %>
+			<label class="checkbox"><input id="porlado" type="checkbox" name="porlado" value="seleccionado" /> Porlado</label>
+		<% } %>
+	<% } %>
+	<% if(session.authenticated && session.User.junta) { %>
+		<% if(user.junta) { %>
+			<label class="checkbox"><input id="junta" type="checkbox" name="junta" checked value="seleccionado" /> Junta</label>
+		<% } else { %>
+			
+			<label class="checkbox"><input id="junta" type="checkbox" name="junta" value="seleccionado" /> Junta</label>
 		<% } %>
 	<% } %>
 	

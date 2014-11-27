@@ -1,13 +1,82 @@
 <div class='container'>
 	<h1><%= user.name + ' '+ user.lastName %></h1>
-	<% if(user.junta) { %>
-		<td><img src="/images/ok3.png" width="32" heigth="32"></td>
-	<% }else{ %>
-		<td><img src="/images/cancel3.png" width="32" heigth="32"></td>
+	<% if(session.authenticated && session.User.junta) { %>
+		<% if(user.junta) { %>
+			<td><img src="/images/ok3.png" width="32" heigth="32">Junta!</td>
+		<% }else{ %>
+			<td><img src="/images/cancel3.png" width="32" heigth="32">Normal</td>
+		<% } %>
+		<% if(user.porlado) { %>
+			<td><img src="/images/ok3.png" width="32" heigth="32">Porlado</td>
+		<% }else{ %>
+			<td><img src="/images/cancel3.png" width="32" heigth="32">TODAVIA SIN PORLAR!!!s</td>
+		<% } %>
 	<% } %>
-	<h3><%= user.birthDate %></h3>
-	<hr>
-	<h3>contact: <%= user.email %></h3>
 
+	<hr>
+
+	<label for="datos"><h2>Dades Personals:</h2></label>
+	<div name="datos">
+		<TABLE>
+			<tr>
+				<td class="trShowType">Email</td>
+				<td class="trShowValue"><%=  user.email ? user.email : 'Informació no disponible' %></td>
+			</tr>
+			<tr>
+				<td class="trShowType">Teléfon</td>
+				<td class="trShowValue"><%=  user.phone ? user.phone : 'Informació no disponible' %></td>
+			</tr>
+			
+			<tr>
+				<td class="trShowType">Data de Neixament</td>
+				<td class="trShowValue"><%=  user.birthDate ? user.birthDate : 'Informació no disponible' %></td>
+			</tr>
+			<tr>
+				<td class="trShowType">DNI</td>
+				<td class="trShowValue"><%=  user.dni ? user.dni : 'Informació no disponible' %></td>
+			</tr>
+		</TABLE>
+
+		<% if(session.authenticated && session.User.junta) { %>
+
+			<br/>
+			<TABLE>
+				<th><h2>Altres dades</h2></th>
+				<tr>
+					<td class="trShowType">Data de Alta</td>
+					<td class="trShowValue"><%=  user.altaDate ? user.altaDate : 'Informació no disponible' %></td>
+				</tr>
+				<tr>
+					<td class="trShowType">Data de Baixa</td>
+					<td class="trShowValue"><%=  user.baixaDate ? user.baixaDate : 'Informació no disponible' %></td>
+				</tr>
+				<tr>
+					<td class="trShowType">Membre Junta?</td>
+					<td class="trShowValue">
+						<%  if (user.junta) { %>
+							<img src="/images/ok3.png" width="32" heigth="32">
+						<% } else {%>
+							<img src="/images/cancel3.png" width="32" heigth="32">
+						<% } %>
+					</td>
+				</tr>
+				<tr>
+					<td class="trShowType">Usuari Porlat?</td>
+					<td class="trShowValue">
+						<%  if (user.porlado) { %>
+							<img src="/images/ok3.png" width="32" heigth="32">
+						<% } else {%>
+							<img src="/images/cancel3.png" width="32" heigth="32">
+						<% } %>
+					</td>
+				</tr>
+			</TABLE>
+		<% } %>
+
+		
+			
+				
+	</div>	
+	<br/>
 	<a class="btn btn-medium btn-primary" href="/users/edit/<%= user.id %>">Edit</a>
 <div>

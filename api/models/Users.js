@@ -55,6 +55,11 @@ module.exports = {
 			defaultsTo: false
 		},
 
+		phone:{
+			type: 'integer',
+			maxLength: 9,
+			minLength: 9
+		},
 
 
 		toJSON: function(){
@@ -68,17 +73,6 @@ module.exports = {
 		}
 	},
 
-	beforeValidation: function (values, next){
-		console.log(values);
-		if(typeof values.junta !== 'undefined'){
-			if(values.junta ==='uncheked'){
-				values.junta = false;	
-			}else if(values.junta[1]==='on'){
-				values.junta = true;
-			}
-		} 
-		next();
-	},
 
 	beforeCreate: function(values, next){
 		//Chequear que realmente el pass y la confirm son iguales antes de continuar
