@@ -4,11 +4,13 @@
 		<caption>Listado de Usuarios</caption>
 		<thead>
 			<tr>
-				<th>ID</th>
-				<th>Name</th>
-				<th>LastName</th>
+				
+				<th>Nom</th>
+				<th>Cognoms</th>
 				<th>Email</th>
+				<th>Grup</th>
 				<th>Junta</th>
+				<th>Porlat</th>
 				<th></th>
 				<th></th>
 				<th></th>
@@ -17,11 +19,17 @@
 		<tbody>
 			<% _.each(users, function(user){ %>
 			<tr data-id="<%= user.id %>" data-model="user">
-				<td><%= user.id %></td>
+				
 				<td><%= user.name %></td>
 				<td><%= user.lastName %></td>
 				<td><%= user.email %></td>
+				<td><%= user.grup %></td>
 				<% if(user.junta) { %>
+					<td><img src="/images/ok3.png" width="32" heigth="32"></td>
+				<% }else{ %>
+					<td><img src="/images/cancel3.png" width="32" heigth="32"></td>
+				<% } %>
+				<% if(user.porlado) { %>
 					<td><img src="/images/ok3.png" width="32" heigth="32"></td>
 				<% }else{ %>
 					<td><img src="/images/cancel3.png" width="32" heigth="32"></td>
